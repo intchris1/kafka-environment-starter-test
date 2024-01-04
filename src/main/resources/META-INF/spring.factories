@@ -1,0 +1,2 @@
+org.springframework.test.context.ContextCustomizerFactory=org.kafkaenv.test.kafka.config.TestContainerKafkaContextCustomizerFactory,\
+  org.kafkaenv.test.common.config.DoubleContextValidationCustomizerFactory

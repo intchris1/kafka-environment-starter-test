@@ -1,0 +1,14 @@
+logging:
+  level:
+    org.apache.kafka.clients: ERROR
+    org.springframework.kafka: ERROR
+spring:
+  application:
+    name: test
+  kafka:
+    producer:
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: testbyte
+      auto-offset-reset: earliest
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer

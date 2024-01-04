@@ -1,0 +1,6 @@
+include:
+  - project: 'products/client-profile/tools/pipelines'
+    ref: 'main'
+    file:
+      - 'pipelines/lib-pipeline.yaml'
+

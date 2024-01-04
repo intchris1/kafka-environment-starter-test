@@ -1,0 +1,23 @@
+logging:
+  level:
+    org.apache.kafka.clients: ERROR
+    org.springframework.kafka: ERROR
+spring:
+  application:
+    name: test
+  kafka:
+    producer:
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+    consumer:
+      group-id: testfull
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      auto-offset-reset: earliest
+    properties:
+      schema.registry.url: https://local.ru:8081,https://local.ru:8082
+      specific.avro.reader: true
+      auto.register.schemas: true
+      security.protocol: SASL_PLAINTEXT
+      sasl.mechanism: PLAIN
+      basic.auth.credentials.source: USER_INFO
+      basic.auth.user.info: admin:admin
+      sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username=admin password=admin;
