@@ -1,5 +1,7 @@
+## kafka-enrionment-starter-test
 Starter library for testing.
-Using Context Customizer, it raises three containers:
+
+Using Context Customizer, the library configures and starts three containers:
 
 1) Kafka (default)
 2) Schema Registry (optional, tied to Kafka)
@@ -11,7 +13,7 @@ Spring.kafka.properties.schema.registry.url, spring.kafka.properties.bootstrap.s
 If the container address is needed in another property, you can use @DynamicPropertySource and
 static methods KafkaContainer#getBootstrapServers, SchemaRegistryContainer#getSchemaRegistryUrl in your test.
 
-REUSE OF CONTAINERS
+## REUSE OF CONTAINERS
 
 EnableTestKafka#destroyContaintersAfterUse=false + Enable ~/.testcontainers.properties#testcontainers.reuse.enable=true
 
@@ -28,6 +30,7 @@ otherwise they will be created and re-run (there is validation for this).
 EnableTestKafka#destroyContaintersAfterUse and EnableTestKafka#enableKafkaUi should only be used locally, before
 you need to disable them by commit (so as not to waste resources and time in the pipeline).
 
+## Container security customization
 EnableTestKafka#enableKafkaSasl, EnableTestKafka#enableSchemaRegistryBasicAuth - ability to add security protocol
 for the corresponding containers.
 Login and password - admin: admin
@@ -35,6 +38,7 @@ When using sasl/basicAuth, the properties for consumer/producer in the Applicati
 You need to write the correct configuration for your consumer/producer, you can use ./resources/application-testfull.yml as an example
 There is also ./resources/application-testbyte.yml - if you don’t need anything other than unprotected Kafka.
 
+## Test accessor
 By default, a KafkaContainerTestAccessor bean is created in the context (available for @Autowired) - allows you to read and
 send messages to the Kafka container.
 If Schema Registry is used, KafkaAvroDeserializer/Serializer is used, otherwise ByteArrayDeserializer/Serializer (that is, a byte[] object is returned)
